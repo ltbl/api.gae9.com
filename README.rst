@@ -84,7 +84,7 @@ GET     /gag/<gag id>            특정 <gag id>에 대한 정보          N
 POST    /gag/<gag id>/tag/<tag>  개그에 태그 추가                   Y
 DELETE  /gag/<gag id>/tag/<tag>  개그에 태그 삭제                   Y
 POST    /gag                     사진 업로드                        Y
-DELETE  /tag/<gag id>            사진 삭제                          Y
+DELETE  /gag/<gag id>            사진 삭제                          Y
 GET     /search                  검색                               N
 ======  =======================  =================================  ======
 
