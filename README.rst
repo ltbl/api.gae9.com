@@ -238,7 +238,7 @@ count      Number  총갯수    해당 태그로 태깅된 컨텐츠의 수
     {
         "meta": {
             "status": 200,
-            "message": OK
+            "message": "OK"
         },
         "response": [
             {
