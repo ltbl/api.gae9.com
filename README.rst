@@ -139,7 +139,7 @@ API호출시 해당 인자를 포함하여 호출할 경우, 응답은 해당 �
             "paging": {
                 "next": 2,
                 "cur": 1,
-                "prev": null"
+                "prev": null
             }
         }
     }
