@@ -326,7 +326,76 @@ images.width       Number  가로크기   이미지의 가로크기(단위: px)�
 images.height      Number  세로크기   이미지의 세로크기(단위: px)를 나타냅니다.
 images.url         String  주소       이미지의 URL 입니다.
 source             String  출처       해당 컨텐츠의 출처를 나타냅니다.
+type               String  종류       해당 컨텐츠의 종류를 나타냅니다.(image|video)
+type_features      Hash    부가정보   종류별로 추가적인 정보가 담깁니다.
 =================  ======  ========   ==================================================================
+
+컨텐츠 부가정보
+---------------
+
+`개9` 에서 제공하는 모든 컨텐츠는 `image` 혹은 `video` 중 하나의 종류입니다.
+안타깝게도, 컨텐츠중 일부는 외부사업자의 컨텐츠에 의존해야 하므로 API 에서 표준화된
+응답을 제공하기 어려운 면이 있습니다. 
+
+따라서, `개9` 에서는 `type_features` 라는 부가정보를 각 컨텐츠 종류에 맞게 추가적인
+응답으로 제공합니다. 
+
+image
+-----
+
+.. code-block:: json
+
+    "type-features": {
+        "content-type": "image/gif"
+        "animated": true
+    }
+
+video
+-----
+
+`type_features["provider"]` 정보에 따라서 각 다른 형태의 부가정보가 포함됩니다.
+
+youtube
+-------
+
+.. code-block:: json
+
+    "type_features": {
+        "permalink": "http://youtu.be/lhe7IiQ_4xA",
+        "provider": "youtube", 
+        "thumbnails": {
+            "default": "http://img.youtube.com/vi/lhe7IiQ_4xA/default.jpg",
+            "hqdefault": "http://img.youtube.com/vi/lhe7IiQ_4xA/hqdefault.jpg"
+        }
+    }
+
+vimeo
+-----
+
+.. code-block:: json
+
+    "type_features": {
+        "permalink": "http://vimeo.com/52942657",
+        "provider": "vimeo",
+        "oembed": "http://vimeo.com/api/oembed.json?url=http%3A//vimeo.com/52942657"
+    }
+
+tvpot
+-----
+
+.. code-block:: json
+
+    "type_features": {
+        "permalink": "http://tvpot.daum.net/v/vc8abuorokllLLHxlkuTxEx",
+        "provider": "tvpot",
+        "thumbnails": {
+            "default": "http://i1.daumcdn.net/svc/image/U03/tvpot_thumb/vc8abuorokllLLHxlkuTxEx/thumb.png",
+            "thumb_1": "http://i1.daumcdn.net/svc/image/U03/tvpot_thumb/vc8abuorokllLLHxlkuTxEx/1.png",
+            "thumb_2": "http://i1.daumcdn.net/svc/image/U03/tvpot_thumb/vc8abuorokllLLHxlkuTxEx/2.png",
+            "thumb_3": "http://i1.daumcdn.net/svc/image/U03/tvpot_thumb/vc8abuorokllLLHxlkuTxEx/3.png",
+        }
+
+    }
 
 이미지의 종류
 -------------
@@ -398,6 +467,10 @@ small      첫 프레임만 추출하여 정적 이미지로 생성합니다.(�
                     "url": ""
                 }
             ],
+            "type": "image",
+            "type_features": {
+                "content-type": "image/jpeg"
+            }
             "source": "http://imgur.com/gallery/ZoEY8",
         }
     }
