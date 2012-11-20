@@ -81,6 +81,7 @@ GET     /channel/<channel>       <channel>에 속한 개그, 사진 목록   N
 GET     /tag                     태그 목록                          N
 GET     /gag                     개그, 사진 목록                    N
 GET     /gag/<gag id>            특정 <gag id>에 대한 정보          N
+GET     /gag/<gag id>/image      가장 큰 사이즈 이미지              N
 POST    /gag/<gag id>/tag/<tag>  개그에 태그 추가                   Y
 DELETE  /gag/<gag id>/tag/<tag>  개그에 태그 삭제                   Y
 POST    /gag                     사진 업로드                        Y
@@ -474,6 +475,27 @@ small      첫 프레임만 추출하여 정적 이미지로 생성합니다.(�
             "source": "http://imgur.com/gallery/ZoEY8",
         }
     }
+
+/gag/<gag id>/image
+===================
+
+`<gag id>` 에 해당하는 내용의 가장 큰 이미지 주소를 `302 Found` Redirect 합니다.
+
+..
+
+    **주의**: 당 API는 유일하게 api.gae9.com 이 아닌 gae9.com 으로 호출 합니다.
+
+
+요청
+----
+
+* GET http://gae9.com/gag/16232/image
+
+응답
+----
+
+* `415 UNSUPPORTED MEDIA TYPE`: 동영상등 단순히 사용할 수 없는 경우 반환됩니다.
+* `302 Found`: 이미지의 주소입니다.
 
 
 /search
